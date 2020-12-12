@@ -1,33 +1,4 @@
-﻿// Julia Rutkowska- lab4/BEDN , lab4/FEDN  - lab4/BEDN , lab4/FEDN 
-
-//1.Stworz aplikację konsolową dla targów samochodowych implementując wzorzec Factory method.
-//2. Konkrenta Fabryka ma zbudować samochód. 
-//3. Abstrakcyjna ma metodę do prezentacji samochodu niezależnie od marki oraz zawiera sygnaturę funkcji implementowaną przez konkretne fabryki.
-//4. Aplkacja powinna wypisać na konsolę (nie wolno modyfikować kodu startowego):
-
-//Witamy na targach samochodowych
-
-//Witamy na pokazie samochodu marki Bmw
-//Teraz zobaczmy jak działają kierunkowskazy
-//Kierowcy i tak ich nie uywają, więc w tym modelu nie dodaliśmy kierunkowskazów
-//Koniec pokazu
-
-
-//Witamy na pokazie samochodu marki Skoda
-//Teraz zobaczmy jak działają kierunkowskazy
-//Zobaczcie pięknie migające migacze
-//Koniec pokazu
-
-
-
-//Klasy i interfejsy które powinny się znajdować, pomyśl co jest klasą, co interfejsem, a co klasą abstrakcyjną.
-
-//ICar,
-//Bmw,
-//Skoda,
-//CarFactory,
-//Skoda Factory,
-//BmwFactory
+﻿// Julia Rutkowska- 12717- lab4/BEDN , lab4/FEDN  - lab4/BEDN , lab4/FEDN 
 
 //Kod startowy:
 
@@ -66,5 +37,51 @@ namespace labs
     {
         public void ShowTurnSignal();
     }
-    // ToDo Dodaj wlasny kod
+
+    abstract class CarFactory
+    {
+        public abstract ICar FactoryMethodMakeCar();
+        public void PresentBrandNewCar()
+        {
+            ICar car = FactoryMethodMakeCar();
+            Console.WriteLine(
+                "Witamy na pokazie samochodu marki " + car.GetType().Name + ".\n" +
+                "Teraz zobaczmy jak działają kierunkowskazy\n");
+
+            car.ShowTurnSignal(); 
+
+            Console.WriteLine( "Koniec pokazu.\n");
+        }
+    }
+    class BmwFactory : CarFactory
+    {
+        public override ICar FactoryMethodMakeCar()
+        {
+            return new Bmw();
+        }
+    }
+
+    class Bmw : ICar
+    {
+        public void ShowTurnSignal()
+        {
+            Console.WriteLine("Kierowcy i tak ich nie uywają, więc w tym modelu nie dodaliśmy kierunkowskazów. ");
+        }
+    }
+    class SkodaFactory : CarFactory
+    {
+        public override ICar FactoryMethodMakeCar()
+        {
+            return new Skoda();
+        }   
+    }
+    class Skoda : ICar
+    {
+        public void ShowTurnSignal()
+        {
+            Console.WriteLine("Teraz zobaczmy jak działają kierunkowskazy\n" +
+                " Zobaczcie pięknie migające migacze");
+        }
+    }
 }
+
