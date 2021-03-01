@@ -1,6 +1,6 @@
 # Design Patterns in C#
 
-Simple implementation of selected design patterns in C#. I performed the tasks as part of the design patterns classes at university.
+A Simple implementation of selected design patterns in C#. I performed the tasks as part of the design patterns classes at university.
 
 Includes the implementation of the following design patterns:
 
